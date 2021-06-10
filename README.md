@@ -1,4 +1,4 @@
-# Boston Airbnb - Pricing
+# Disaster Response Pipeline
 
 ---
 
@@ -15,22 +15,10 @@ You're sections headers will be used to reference location of destination.
 
 ## Description
 
-This is my first ever documented project. There will be mistakes and errors throughout the whole 
-repository and I'm more than welcome to receive any feedback for improvement. Therefore I'm trying
-to learn everyday something new. 
+This project will analyze thousands of real messages that were sent during natural disaster. These messages are collected from either social media or directly to disaster
+response organizations. Therefore this project will build a ETL pipeline that processes message and category data and loading it in a SQLite Database. Afterwards the processed data will be analyzed using a ML pipeline to predict a multi-output supervised learning model. In the final stage the app will the deployed on the web to provide data visualizations and using the models to classify new messages for the 36 different categories to prioritize which message is important and relevant to a natural disaster.
 
-This repository is aligned with Udacity's 'Data Scienctist Nanodegree Program'. Thank you for this amazing introduction
-into Data Science. This nanodegree helps me to stay motivated and invest at least one hour each day and keep my focus
-on this work.
-
-The project will try to help to understand how the host prices in Boston are distributed. Do you also plan to earn some extra cash? Wanna know what should be taken into consideration when you start hosting accommodations on Airbnb. What features are important for guests so you as a host can recommend a reasonable price and attract more guests. So will we be able to select the right estimators to predict the price? Let’s see what can make YOU a good host.
-
-The files included in the dataset are following:
-
-Udacity Data Science Project.ipynb: A notebook document used for Jupyter Notebook explicitly to review my code and research of this project.
-Boston_Airbnb.7z: Contains three csv files. Unzip the folder to be able to use the csv files, which contain the dataset for the corresonding code.
-
-To see the results of the analysis of this project, check out my article on Medium: https://artur-kasakow.medium.com/this-is-why-airbnb-pricing-in-boston-is-noteworthy-d1a7b70cb330
+With the help of Figure Eight, who provide the data, this project contributes to help and filter out messages that matter and finding basic messages by using keyword searches to provide trivial results.
 
 #### Technologies
 
@@ -39,10 +27,10 @@ To see the results of the analysis of this project, check out my article on Medi
     - Pandas
     - Numpy
     - Scikit-learn
-    - Matplotlib
-    - Seaborn
-    - SciPy
-
+    - NLTK
+    - Flask
+    - Plotly
+- SQLalchemy
 
 ---
 
@@ -50,34 +38,22 @@ To see the results of the analysis of this project, check out my article on Medi
 
 #### Installation
 
-This project is executed in a Jupyter Notebook.
-Therefore you will need to download the Anaconda distribution.
+First clone this GIT repository:
 
-https://www.anaconda.com/products/individual#linux
+`git clone https://github.com/ArtKasakow/disaster-response-pipeline`
 
-Finally follow the path from the Anaconda documentation for
-installing.
+### Instructions:
+1. Run the following commands in the project's root directory to set up your database and model.
 
-https://docs.anaconda.com/anaconda/install/linux/
+    - To run ETL pipeline that cleans data and stores in database
+        `python data/process_data.py data/disaster_messages.csv data/disaster_categories.csv data/DisasterResponse.db`
+    - To run ML pipeline that trains classifier and saves
+        `python models/train_classifier.py data/DisasterResponse.db models/classifier.pkl`
 
-To install Basemap run the following code in the Anaconda prompt:
+2. Run the following command in the app's directory to run your web app.
+    `python run.py`
 
-`conda install basemap`
-
----
-
-## References
-
-- Kaggle - https://www.kaggle.com/krystal96 
-- Kaggle - https://www.kaggle.com/zhaoyunma
-
-Thank you for your the great insights @Yiting Wang and @Zhaoyun Ma in your great documented project!
-
-- GitHub - https://github.com/licenses/license-templates/blob/master/LICENSE
-
-Thank you @jcarbaugh for providing this license template. With time and experience I will try to improve the templates
-and give them a touch of myself.
-
+3. Go to http://0.0.0.0:3001/
 
 ---
 
@@ -112,6 +88,13 @@ Other Information:
     * When using or citing the work, you should not imply endorsement
     by the author or the affirmer.
 
+
+---
+
+## Acknowledgements
+
+I'm thanking Udacity and Figure Eight for this cooperation to provide a real dataset and helping to provide meaningful work and value.
+Engineering a project from the start to help people that affected by natural disasters around the work and helping them in the best possible way to overcome natural disasters.
 
 ---
 
