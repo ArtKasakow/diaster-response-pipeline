@@ -101,7 +101,13 @@ def build_model():
                     ('clf', MultiOutputClassifier(RandomForestClassifier()))
                     ])
     
-    return pipeline
+    # parameters to grid search
+    parameters = { 'clf__estimator__n_estimators' : [50,65,80,95] }
+    
+    # initiating GridSearchCV method
+    model = GridSearchCV(pipeline, param_grid=parameters)
+
+    return model
 
 
 def evaluate_model(model, X_test, Y_test, category_names):
